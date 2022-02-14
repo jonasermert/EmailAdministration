@@ -147,7 +147,7 @@ public class Email {
         return department;
     }
 
-    public void setDept(String department) {
+    public void setDepartment(String department) {
         this.department = department;
     }
 
