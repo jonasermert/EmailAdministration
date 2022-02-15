@@ -1,12 +1,13 @@
 package com.jonasermert;
 
 
-/**
+/*
  * Jonas Ermert
  * 1.0
- *
  */
 
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.*;
 
 public class Email {
@@ -24,11 +25,11 @@ public class Email {
         public Email(String fname, String lname) {
             this.fname = fname;
             this.lname = lname;
-            System.out.println("New Employee:" + this.fname + " " + this.lname)
+            System.out.println("New Employee:" + this.fname + " " + this.lname);
         }
 
-    public Email(Scanner s, String fname, String lname, String department, String email, String password, int mailCapacity, String alter_email) {
-        this.s = s;
+    public Email(String fname, String lname, String department, String email, String password, int mailCapacity, String alter_email) {
+        // this.s = s;
         this.fname = fname;
         this.lname = lname;
         this.department = department;
@@ -81,7 +82,7 @@ public class Email {
             String values = CapitalChars + SmallChars + numbers + symbols;
             String password = "";
 
-            for (i = 0 , i < length; i++) {
+            for (int i = 0; i < length; i++) {
                 password = password + values.charAt(r.nextInt(values.length()));
             }
 
@@ -116,6 +117,61 @@ public class Email {
                 }
             } while(!flag);
         }
+
+
+    public void set_mailCap() {
+        System.out.println("Current capacity = " + this.mailCapacity + "mb");
+        System.out.print("Enter new capacity: ");
+        this.mailCapacity = s.nextInt();
+        System.out.println("MAILBOX CAPACITY CHANGED SUCCESSFULLY!");
+
+    }
+
+    // Set the alternate email
+    public void alternate_email() {
+        System.out.print("Enter new alternate email: ");
+        this.alter_email = s.next();
+        System.out.println("ALTERNATE EMAIL SET SUCCESSFULLY!");
+    }
+
+    public void getInfo() {
+        System.out.println("NAME: " + this.fname + " " + this.lname);
+        System.out.println("DEPARTMENT: " + this.dept);
+        System.out.println("EMAIL: " + this.email);
+        System.out.println("PASSWORD: " + this.password);
+        System.out.println("MAILBOX CAPACITY: " + this.mailCapacity + "mb");
+        System.out.println("ALTER EMAIL: " + this.alter_email);
+    }
+
+    public void storefile() {
+        try {
+            FileWriter in = new FileWriter("C:\\Users\\Dell\\Desktop\\Info.txt");
+            in.write("First Name: "+this.fname);
+            in.append("Last Name: "+this.lname);
+            in.append("Email: "+this.email);
+            in.append("Password: "+this.password);
+            in.append("Capacity: "+this.mailCapacity);
+            in.append("Alternate mail: "+this.alter_email);
+            in.close();
+            System.out.println("Stored..");
+        }catch (Exception e){System.out.println(e);}
+    }
+
+    public void read_file() {
+        try {
+            FileReader f1 = new
+                    FileReader("C:\\Users\\Jonas\\Desktop\\Info.txt");
+            int i;
+            while ((i = f1.read()) != -1) {
+                System.out.print((char) i);
+            }
+            f1.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        System.out.println();
+
+    }
 
     /*
     public Scanner getS() {
